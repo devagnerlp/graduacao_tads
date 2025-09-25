@@ -6,11 +6,11 @@ public class Venda {
     private LocalDate data;
     private Double valorTotal;
     private Produto produto; // Produto é a classe ligada ao atributo produto
+   
+   
     public LocalDate getData() {
         return data;
-    }
-
-    
+    }    
     public void setData(LocalDate data) {
         this.data = data;
     }
