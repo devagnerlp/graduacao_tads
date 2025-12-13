@@ -1,23 +1,33 @@
 package model;
 
 public class Professor extends PessoaGen {
-    private String matricula;
+    private int matricula;
+    private String status;
 
     
-    public Professor(String matricula) {
+    public Professor(int matricula, String status) {
         this.matricula = matricula;
+        this.status = status;
     }
 
     public Professor() {
     }
 
-    public String getMatricula() {
+
+    public int getMatricula() {
         return matricula;
     }
-
-    public void setMatricula(String matricula) {
+    public void setMatricula(int matricula) {
         this.matricula = matricula;
     }
+
+    public String getStatus() {
+        return status;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 
 }
 
