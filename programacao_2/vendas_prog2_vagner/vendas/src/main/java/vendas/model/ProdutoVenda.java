@@ -4,16 +4,16 @@ public class ProdutoVenda {
     private int id;
     private Produto produto;
     private Venda venda;
-    private double qtde_vendida;
+    private double qtdeVendida;
     
     
     public ProdutoVenda() {
     }
-    public ProdutoVenda(int id, Produto produto, Venda venda, double qtde_vendida) {
+    public ProdutoVenda(int id, Produto produto, Venda venda, double qtdeVendida) {
         this.id = id;
         this.produto = produto;
         this.venda = venda;
-        this.qtde_vendida = qtde_vendida;
+        this.qtdeVendida = qtdeVendida;
     }
 
     public int getId() {
@@ -37,11 +37,11 @@ public class ProdutoVenda {
         this.venda = venda;
     }
 
-    public double getQtde_vendida() {
-        return qtde_vendida;
+    public double getQtdeVendida() {
+        return qtdeVendida;
     }
-    public void setQtde_vendida(double qtde_vendida) {
-        this.qtde_vendida = qtde_vendida;
+    public void setQtdeVendida(double qtdeVendida) {
+        this.qtdeVendida = qtdeVendida;
     }
 
 

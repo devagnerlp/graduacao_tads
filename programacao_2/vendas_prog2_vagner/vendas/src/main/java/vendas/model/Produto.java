@@ -3,16 +3,18 @@ package vendas.model;
 public class Produto {
     private int id;
     private String nome;
+    private Categoria categoria;
     private double preco;
-    private double qtde_estoque;
+    private double qtdeEstoque;
     
     public Produto() {
     }
-    public Produto(int id, String nome, double preco, double qtde_estoque) {
+    public Produto(int id, String nome, double preco, double qtdeEstoque, Categoria categoria) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
-        this.qtde_estoque = qtde_estoque;
+        this.qtdeEstoque = qtdeEstoque;
+        this.categoria = categoria;
     }
 
     public int getId() {
@@ -29,6 +31,14 @@ public class Produto {
         this.nome = nome;
     }
 
+    public Categoria getCategoria() {
+        return categoria;
+    }
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+
+
     public double getPreco() {
         return preco;
     }
@@ -36,11 +46,11 @@ public class Produto {
         this.preco = preco;
     }
 
-    public double getQtde_estoque() {
-        return qtde_estoque;
+    public double getQtdeEstoque() {
+        return qtdeEstoque;
     }
-    public void setQtde_estoque(double qtde_estoque) {
-        this.qtde_estoque = qtde_estoque;
+    public void setQtdeEstoque(double qtdeEstoque) {
+        this.qtdeEstoque = qtdeEstoque;
     }  
 
 }

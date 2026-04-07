@@ -1,20 +1,23 @@
 package vendas.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Venda {
     private int id;
-    private LocalDate data_venda;
-    private double valor_total;
+    private LocalDate dataVenda;
+    private double valorTotal;
     private Cliente cliente;
-    
+    private List<ProdutoVenda> produtosVendidos; // cria lista de produtos vendidos nessa venda
+
     public Venda() {
     }
-    public Venda(int id, LocalDate data_venda, double valor_total, Cliente cliente) {
+    public Venda(int id, LocalDate dataVenda, double valorTotal, Cliente cliente, List<ProdutoVenda> produtosVendidos) {
         this.id = id;
-        this.data_venda = data_venda;
-        this.valor_total = valor_total;
+        this.dataVenda = dataVenda;
+        this.valorTotal = valorTotal;
         this.cliente = cliente;
+        this.produtosVendidos = produtosVendidos;
     }
 
     public int getId() {
@@ -24,18 +27,18 @@ public class Venda {
         this.id = id;
     }
 
-    public LocalDate getData_venda() {
-        return data_venda;
+    public LocalDate getDataVenda() {
+        return dataVenda;
     }
-    public void setData_venda(LocalDate data_venda) {
-        this.data_venda = data_venda;
+    public void setDataVenda(LocalDate dataVenda) {
+        this.dataVenda = dataVenda;
     }
 
-    public double getValor_total() {
-        return valor_total;
+    public double getValorTotal() {
+        return valorTotal;
     }
-    public void setValor_total(double valor_total) {
-        this.valor_total = valor_total;
+    public void setValorTotal(double valorTotal) {
+        this.valorTotal = valorTotal;
     }
     
     public Cliente getCliente() {
@@ -44,4 +47,12 @@ public class Venda {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
+    public List<ProdutoVenda> getProdutosVendidos() {
+        return produtosVendidos;
+    }
+    public void setProdutosVendidos(List<ProdutoVenda> produtosVendidos) {
+        this.produtosVendidos = produtosVendidos;
+    }
+
 }
