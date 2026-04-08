@@ -4,7 +4,6 @@ import vendas.dao.ClienteDAO;
 import vendas.dao.ProdutoDAO;
 import vendas.dao.ProdutoVendaDAO;
 import vendas.dao.VendaDAO;
-import vendas.model.Produto;
 import vendas.model.ProdutoVenda;
 import vendas.model.Venda;
 

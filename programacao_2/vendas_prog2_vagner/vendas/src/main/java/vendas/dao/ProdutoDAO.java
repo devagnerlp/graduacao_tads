@@ -20,7 +20,7 @@ public class ProdutoDAO {
             stmt.setDouble(4, produto.getQtdeEstoque());
 
             stmt.executeUpdate();
-            System.out.println("Produto salvo com sucesso!");
+            System.out.println("Produto salvo com sucesso!"); // só para teste, mensagem deve ficar na view
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -118,6 +118,8 @@ public class ProdutoDAO {
     }
 
     public void atualizarEstoque (Produto produto, double qtdeVendida){
+        // interessante antes verificar se o produto existe antes de tentar atualizar o estoque, para evitar erros
+        // o código de verificar seria inserido antes do código de atualização, e caso o produto não exista, uma mensagem de erro seria exibida e a atualização não seria realizada
         String sql = "UPDATE produto SET qtde_estoque = qtde_estoque - ? WHERE id=?";
 
         try{
