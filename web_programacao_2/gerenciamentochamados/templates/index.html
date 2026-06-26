@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Central de Suporte</title>
+
+    <style>
+        p.success {
+            color: green;
+            font-weight: bold;
+        }
+        p.error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Script para sumir as mensagens após 2 segundos -->
+    <script>
+        setTimeout(function() {
+            const mensagens = document.querySelectorAll('.success, .error'); 
+            mensagens.forEach(function(msg) {
+                msg.style.transition = 'opacity 0.5s';
+                msg.style.opacity = '0';
+                setTimeout(function() {
+                    msg.remove();
+                }, 100);
+            });
+        }, 2000);
+    </script>
+
+    <main class="container">
+        <hgroup>
+            <h1>Central de Suporte</h1>
+            <p>Sistema de Gerenciamento de Chamados</p>
+        </hgroup>
+
+        <hr>
+
+        <!-- exibe as Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %} <!-- carrega mensagem com categoria -->
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p><!-- um parágafo para cada mensagem -->
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if usuario %}
+        <!-- PAINEL DE BOAS-VINDAS (logado) -->
+        <hgroup>
+            <h2>Bem-vindo, {{ usuario }}!</h2>
+            <p>O que você deseja fazer agora?</p>
+        </hgroup>
+
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('abrir_chamado') }}" role="button">Abrir Chamado</a></li>
+                <li><a href="{{ url_for('fila') }}" role="button" class="secondary">Fila de Suporte</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <a href="{{ url_for('logout') }}" role="button" class="contrast outline">Sair</a>
+
+        {% else %}
+        <!-- FORMULÁRIO DE LOGIN (não logado) -->
+        <hgroup>
+            <h2>Acesso ao Sistema</h2>
+            <p>Informe suas credenciais para continuar.</p>
+        </hgroup>
+
+        <section>
+            <form action="{{ url_for('index') }}" method="POST">
+                <input type="text" name="nome" placeholder="Usuário" required>
+                <input type="password" name="senha" placeholder="Senha" required>
+                <button type="submit">Entrar</button>
+            </form>
+        </section>
+
+        {% endif %}
+
+    </main>
+
+</body>
+</html>

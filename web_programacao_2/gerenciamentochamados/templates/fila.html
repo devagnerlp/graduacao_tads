@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Fila de Suporte</title>
+
+    <style>
+        p.success {
+            color: green;
+            font-weight: bold;
+        }
+        p.error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Script para sumir as mensagens após 2 segundos -->
+    <script>
+        setTimeout(function() {
+            const mensagens = document.querySelectorAll('.success, .error');
+            mensagens.forEach(function(msg) {
+                msg.style.transition = 'opacity 0.5s';
+                msg.style.opacity = '0';
+                setTimeout(function() {
+                    msg.remove();
+                }, 100);
+            });
+        }, 2000);
+    </script>
+
+    <main class="container">
+        <hgroup>
+            <h1>Central de Suporte</h1>
+            <p>Sistema de Gerenciamento de Chamados</p>
+        </hgroup>
+
+        <hr>
+
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Início</a></li>
+                <li><a href="{{ url_for('abrir_chamado') }}">Abrir Chamado</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <hgroup>
+            <h2>Fila de Suporte</h2>
+            <p>Chamados ativos ordenados, em ordem de prioridade, do mais recente ao mais antigo.</p>
+        </hgroup>
+
+        <section>
+            <table role="grid">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Cliente</th>
+                        <th>Descrição</th>
+                        <th>Prioridade</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if chamados %}
+                        {% for chamado in chamados %}
+                        <tr> <!-- uma nova linha criada a cada iteração -->
+                            <td>{{ chamado['id'] }}</td><!-- colunda de cada linha -->
+                            <td>{{ chamado['cliente'] }}</td>
+                            <td>{{ chamado['descricao'] }}</td>
+                            <td>{{ chamado['prioridade'] }}</td>
+                            <td>{{ chamado['status'] }}</td>
+                            <td> <!-- coluna para abrigar os botões -->
+                                <div style="display: flex; gap: 4px; align-items: center;">
+
+                                    <!-- Botão Atender -->
+                                    <form action="{{ url_for('atender', id_chamado=chamado['id']) }}" method="POST" style="display:inline;">
+                                        <button type="submit" class="outline" style="padding: 4px 8px; margin: 0;">
+                                            📋 Atender
+                                        </button>
+                                    </form>
+
+                                    <!-- Botão Concluir -->
+                                    <form action="{{ url_for('concluir', id_chamado=chamado['id']) }}" method="POST" style="display:inline;">
+                                        <button type="submit" class="outline" style="padding: 4px 8px; margin: 0;">
+                                            ✅ Concluir
+                                        </button>
+                                    </form>
+
+                                    <!-- Botão Cancelar -->
+                                    <form action="{{ url_for('cancelar', id_chamado=chamado['id']) }}" method="POST" style="display:inline;">
+                                        <button type="submit" class="outline contrast" style="padding: 4px 8px; margin: 0;"
+                                            onclick="return confirm('Deseja cancelar o chamado #{{ chamado.id }}?');"> <!-- caixa de diálogo de confirmação -->
+                                            ❌ Cancelar
+                                        </button>
+                                    </form>
+
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="6">Nenhum chamado ativo no momento.</td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+
+</body>
+</html>

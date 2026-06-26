@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <title>Abrir Chamado</title>
+
+    <style>
+        p.success {
+            color: green;
+            font-weight: bold;
+        }
+        p.error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Script para sumir as mensagens após 2 segundos -->
+    <script>
+        setTimeout(function() {
+            const mensagens = document.querySelectorAll('.success, .error');
+            mensagens.forEach(function(msg) {
+                msg.style.transition = 'opacity 0.5s';
+                msg.style.opacity = '0';
+                setTimeout(function() {
+                    msg.remove();
+                }, 100);
+            });
+        }, 2000);
+    </script>
+
+    <main class="container">
+        <hgroup>
+            <h1>Central de Suporte</h1>
+            <p>Sistema de Gerenciamento de Chamados</p>
+        </hgroup>
+
+        <hr>
+
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}">Início</a></li>
+                <li><a href="{{ url_for('fila') }}">Fila de Suporte</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <hgroup>
+            <h2>Abrir Chamado</h2>
+            <p>Preencha os dados abaixo para registrar um novo chamado.</p>
+        </hgroup>
+
+        <section id="formulario">
+            <form action="{{ url_for('abrir_chamado') }}" method="POST">
+
+                <div class="grid">
+                    <input type="text" name="cliente" placeholder="Nome do Cliente" required>
+
+                    <select name="prioridade" required>
+                        <option value="" disabled selected>Prioridade</option>
+                        <option value="Baixa">Baixa</option>
+                        <option value="Média">Média</option>
+                        <option value="Alta">Alta</option>
+                    </select>
+                </div>
+
+                <textarea name="descricao" placeholder="Descrição do Problema" rows="4" required></textarea>
+
+                <button type="submit" class="contrast">Abrir Chamado</button>
+
+            </form>
+        </section>
+
+    </main>
+
+</body>
+</html>
