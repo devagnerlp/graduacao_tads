@@ -1,0 +1,480 @@
+📚 CorrigeProvas
+O CorrigeProvas é uma aplicação web desenvolvida para auxiliar professores na correção de simulados aplicados fora da plataforma.
+
+A aplicação permite que o professor cadastre o gabarito de um simulado, enquanto os alunos informam as respostas que marcaram na prova. Após o envio, o sistema realiza a correção automaticamente, calcula a nota e disponibiliza o resultado ao aluno somente quando o professor autorizar.
+
+🎯 O CorrigeProvas não realiza a aplicação da prova. Ele é utilizado exclusivamente para cadastrar gabaritos, receber respostas e corrigir simulados.
+
+🚀 Objetivo da aplicação
+A plataforma tem como objetivo facilitar o processo de correção de questões objetivas para isso ela:
+- Possibilita o cadastro de simulado com suas questões e seus gabaritos;
+- Permite que alunos registrem suas respostas;
+- Corrige automaticamente as respostas enviadas;
+- Calcula acertos, erros, nota e percentual de aproveitamento;
+- Garante apenas uma tentativa por aluno em cada simulado;
+- Permite que o professor controle quando os resultados serão liberados;
+- Organiza os resultados dos alunos de forma clara e acessível.
+
+👥 Perfis de usuário
+A aplicação possui dois tipos de usuários:
+
+👨‍🏫 Professor
+
+O professor pode:
+- Criar uma conta;
+- Fazer login;
+- Cadastrar simulados;
+- Informar as questões e seus respectivos gabaritos;
+- Adicionar opcionalmente o assunto de cada questão;
+- Editar e excluir simulados;
+- Consultar os alunos que responderam;
+- Visualizar os resultados;
+- Liberar ou bloquear a visualização dos resultados.
+
+👨‍🎓 Aluno
+
+O aluno pode:
+- Criar uma conta;
+- Fazer login;
+- Visualizar os simulados disponíveis;
+- Informar as respostas que marcou na prova;
+- Enviar suas respostas uma única vez;
+- Aguardar a liberação dos resultados;
+- Consultar sua nota após a autorização do professor.
+
+🧩 Como o sistema funciona
+
+O funcionamento principal da aplicação segue este fluxo:
+- Professor faz login
+- Cria um simulado
+- Cadastra questões egabaritos
+- Aluno faz login
+- Aluno visualiza simuladosdisponíveis
+- Aluno informa suasrespostas
+- Aluno envia o simulado
+- Sistema corrigeautomaticamente
+- Resultado fica aguardandoliberação
+- Professor consulta osresultados
+- Professor libera osresultados
+- Aluno visualiza sua nota
+
+📝 Cadastro do simulado
+
+O professor cadastra as informações gerais do simulado:
+- Título;
+- Disciplina;
+- Turma;
+- Data de aplicação;
+- Descrição, opcional.
+O professor também cadastra as questões do gabarito contendo:
+- Número da questão;
+- Gabarito;
+- Assunto. opcional.
+Exemplo de gabarito
+Questão	Gabarito	Assunto
+1	    A	        Frações
+2	    C	        Porcentagem
+3	    B	        —
+4	    D	        Equações
+
+A plataforma não possui campos para:
+- Enunciado da questão;
+- Texto das alternativas;
+- Imagens da prova;
+- Conteúdo completo do simulado.
+Essas informações pertencem à prova aplicada fora do sistema.
+
+
+🔐 Fluxo de autenticação
+
+Cadastro
+O usuário informa:
+- Nome;
+- E-mail;
+- Senha;
+- Tipo de perfil: professor ou aluno.
+O sistema valida os campos antes de concluir o cadastro.
+
+Validações previstas:
+- Nome obrigatório;
+- E-mail obrigatório;
+- Formato de e-mail válido;
+- Senha obrigatória;
+- Senha com tamanho mínimo;
+- Perfil obrigatório.
+- Após o cadastro, o sistema exibe:
+
+✅ Conta criada com sucesso. Faça login para continuar.
+
+Login
+O usuário informa:
+- E-mail;
+- Senha.
+Após o login, o sistema direciona o usuário de acordo com o seu perfil:
+- Professor → Dashboard do professor;
+- Aluno → Dashboard do aluno.
+Mensagens possíveis:
+✅ Login realizado com sucesso.
+❌ Credenciais inválidas.
+⚠️ Preencha todos os campos.
+⚠️ Informe um e-mail válido.
+🔒 Sessão encerrada com sucesso.
+
+
+👨‍🏫 Fluxo do professor
+
+1. Acessar o dashboard
+Depois de realizar o login, o professor acessa seu painel principal.
+
+O dashboard apresenta:
+- Total de simulados cadastrados;
+- Simulados com resultados bloqueados;
+- Simulados com resultados liberados;
+- Total de respostas recebidas;
+- Simulados recentes;
+- Atalho para cadastrar um novo simulado.
+O menu do professor possui as opções:
+🏠 Dashboard;
+📄 Meus simulados;
+➕ Novo simulado;
+📊 Resultados;
+🚪 Sair.
+
+2. Criar um simulado
+O professor seleciona a opção Novo simulado e preenche os dados gerais.
+Depois, cadastra as questões com:
+- Número;
+- Gabarito;
+- Assunto opcional.
+O sistema deve impedir:
+- Campos obrigatórios vazios;
+- Número de questão inválido;
+- Gabarito diferente de A, B, C, D ou E;
+- Questões com números repetidos;
+- Cadastro de simulado sem nenhuma questão.
+Após salvar, o sistema exibe:
+✅ Simulado criado com sucesso.
+
+3. Listar simulados
+Na tela de simulados, o professor visualiza todos os simulados cadastrados por ele.
+Cada item apresenta:
+- Título;
+- Disciplina;
+- Turma;
+- Data de aplicação;
+- Quantidade de questões;
+- Quantidade de respostas recebidas;
+- Situação dos resultados;
+- Ações disponíveis.
+Ações possíveis:
+👁️ Visualizar;
+✏️ Editar;
+🗑️ Excluir;
+📊 Ver resultados.
+
+4. Buscar e filtrar simulados
+O professor pode localizar simulados utilizando:
+- Busca por título;
+- Filtro por disciplina;
+- Filtro por turma;
+- Filtro por situação dos resultados.
+- Quando não houver simulados cadastrados, o sistema exibe:
+
+📭 Nenhum simulado cadastrado ainda.
+
+5. Visualizar detalhes do simulado
+Na tela de detalhes, o professor pode consultar:
+- Dados gerais do simulado;
+- Lista de questões;
+- Gabaritos;
+- Assuntos cadastrados;
+- Quantidade total de questões;
+- Quantidade de alunos que responderam;
+- Situação da liberação dos resultados.
+Também ficam disponíveis as ações:
+- Editar simulado;
+- Excluir simulado;
+- Consultar resultados;
+- Liberar resultados;
+- Bloquear resultados.
+
+6. Editar um simulado
+O professor pode alterar:
+- Título;
+- Disciplina;
+- Turma;
+- Data de aplicação;
+- Descrição;
+- Questões;
+- Gabaritos;
+- Assuntos.
+Após salvar as alterações, o sistema exibe:
+✅ Simulado atualizado com sucesso.
+
+7. Excluir um simulado
+Ao selecionar a opção de exclusão, o sistema solicita confirmação:
+⚠️ Tem certeza de que deseja excluir este simulado? Essa ação não poderá ser desfeita.
+Após a confirmação:
+✅ Simulado excluído com sucesso.
+
+8. Consultar resultados
+O professor pode visualizar os resultados dos alunos que responderam ao simulado.
+A tabela de resultados apresenta:
+- Nome do aluno;
+- E-mail;
+- Simulado;
+- Quantidade de acertos;
+- Quantidade de erros;
+- Nota;
+- Percentual de aproveitamento;
+- Data de envio;
+- Situação da liberação.
+O professor também pode utilizar:
+- Busca por nome do aluno;
+- Filtro por simulado;
+- Filtro por nota;
+- Filtro por situação do resultado.
+Quando nenhum aluno tiver respondido:
+📭 Nenhum aluno respondeu a este simulado ainda.
+
+9. Liberar ou bloquear resultados
+O professor controla a visibilidade dos resultados.
+Liberar resultados
+Ao liberar os resultados:
+- Os alunos passam a visualizar suas notas;
+- A situação do simulado muda para “Resultados liberados”;
+- O sistema exibe uma confirmação visual.
+Mensagem:
+✅ Resultados liberados para os alunos.
+
+Bloquear resultados
+Ao bloquear os resultados:
+- Os alunos deixam de visualizar as notas;
+- O sistema mantém as respostas e os cálculos armazenados;
+- O resultado volta a ficar indisponível para o aluno.
+Mensagem:
+🔒 Resultados bloqueados.
+Antes da alteração, o sistema solicita confirmação ao professor.
+
+
+👨‍🎓 Fluxo do aluno
+
+1. Acessar o dashboard
+Após fazer login, o aluno acessa seu painel principal.
+O dashboard apresenta:
+- Quantidade de simulados disponíveis;
+- Quantidade de simulados respondidos;
+- Resultados liberados;
+- Resultados aguardando liberação.
+O menu do aluno possui as opções:
+🏠 Início;
+📄 Simulados disponíveis;
+📊 Meus resultados;
+🚪 Sair.
+
+2. Visualizar simulados disponíveis
+O aluno pode visualizar os simulados disponíveis para resposta.
+Cada simulado apresenta:
+- Título;
+- Disciplina;
+- Turma;
+- Data de aplicação;
+- Quantidade de questões;
+- Situação da participação.
+O aluno pode encontrar simulados por meio de:
+- Busca por título;
+- Filtro por disciplina;
+- Filtro por turma.
+Os simulados podem apresentar os seguintes estados:
+🟢 Ainda não respondido;
+🔵 Resposta enviada;
+🟡 Resultado aguardando liberação;
+✅ Resultado disponível.
+
+3. Responder ao simulado
+Ao iniciar um simulado, o aluno visualiza:
+- Título;
+- Disciplina;
+- Turma;
+- Instruções;
+- Lista numerada de questões;
+- Opções de resposta A, B, C, D e E.
+A plataforma não apresenta os enunciados nem o texto das alternativas. O aluno apenas informa a letra que marcou na prova aplicada fora do sistema.
+
+Exemplo
+Questão 1
+( ) A
+( ) B
+( ) C
+( ) D
+( ) E
+O aluno precisa responder todas as questões antes de enviar.
+Caso existam questões sem resposta, o sistema:
+- Destaca as questões pendentes;
+- Impede o envio;
+- Exibe uma mensagem de orientação.
+Mensagem:
+⚠️ Responda todas as questões antes de enviar o simulado.
+
+4. Enviar respostas
+Antes do envio definitivo, o sistema apresenta uma confirmação:
+⚠️ Após o envio, você não poderá alterar suas respostas nem realizar uma nova tentativa. Deseja continuar?
+Se o aluno confirmar:
+- As respostas são registradas;
+- O sistema compara as respostas com o gabarito;
+- A quantidade de acertos é calculada;
+- A quantidade de erros é calculada;
+- A nota é calculada;
+- O formulário é bloqueado;
+- O resultado fica aguardando liberação do professor.
+Mensagem exibida:
+✅ Respostas enviadas com sucesso. Aguarde a liberação do resultado pelo professor.
+
+5. Regra de tentativa única
+Cada aluno possui direito a apenas uma tentativa por simulado.
+Depois que as respostas forem enviadas:
+- O aluno não pode editar as respostas;
+- O aluno não pode excluir a tentativa;
+- O aluno não pode reenviar o simulado;
+- O botão de envio deixa de ser exibido;
+- O formulário permanece bloqueado;
+Uma nova tentativa é recusada.
+Caso o aluno tente responder novamente, o sistema informa:
+⚠️ Você já respondeu este simulado.
+Essa regra deve ser controlada principalmente pela aplicação e, futuramente, também pela API.
+
+
+🧮 Correção automática
+A correção é realizada comparando:
+- Resposta marcada pelo aluno;
+- Gabarito cadastrado pelo professor.
+Fórmula da nota
+A nota é calculada de acordo com a seguinte fórmula:
+- nota = (quantidade de acertos ÷ quantidade total de questões) × 10
+Exemplo
+Em um simulado com 10 questões:
+Acertos: 8
+Erros: 2
+Nota: 8,0
+Aproveitamento: 80%
+O sistema deve armazenar:
+- Quantidade de acertos;
+- Quantidade de erros;
+- Nota;
+- Percentual de aproveitamento;
+- Data e hora do envio;
+Situação do resultado.
+
+🔒 Controle de visualização dos resultados
+O resultado é calculado imediatamente após o envio, mas permanece oculto para o aluno.
+Enquanto o professor não liberar a visualização, o aluno verá:
+🕒 Suas respostas foram enviadas. Aguarde a liberação do resultado pelo professor.
+O aluno não poderá visualizar:
+- Nota;
+- Quantidade de acertos;
+- Quantidade de erros;
+- Percentual de aproveitamento.
+Após a liberação pelo professor, o aluno poderá visualizar:
+- Nota;
+- Acertos;
+- Erros;
+- Percentual de aproveitamento;
+- Data de realização;
+Indicador visual de desempenho.
+
+📊 Meus resultados
+Na tela Meus resultados, o aluno visualiza o histórico de simulados respondidos.
+Resultado aguardando liberação
+Exibe:
+- Título do simulado;
+- Data de envio;
+- Status “Aguardando liberação”;
+- Mensagem informando que o professor ainda não liberou a nota.
+Resultado liberado
+Exibe:
+- Título do simulado;
+- Quantidade de acertos;
+- Quantidade de erros;
+- Nota;
+- Percentual de aproveitamento;
+- Data de realização;
+Indicador de desempenho.
+As respostas permanecem bloqueadas e não podem ser alteradas.
+
+✅ Validações do sistema
+Validações no front-end
+A interface deve impedir o envio de dados inválidos, como:
+- Campos obrigatórios vazios;
+- E-mail malformado;
+- Senha abaixo do tamanho mínimo;
+- Número de questão inválido;
+- Gabarito inexistente;
+- Questões repetidas;
+- Simulado sem questões;
+- Respostas incompletas;
+- Segunda tentativa do mesmo aluno.
+- Validações previstas para a API
+Em uma futura integração com o back-end em Python, a API deverá validar novamente:
+- Dados do usuário;
+- Permissões por perfil;
+- Propriedade dos simulados;
+- Formato dos gabaritos;
+- Existência das questões;
+- Tentativa única;
+- loqueio das respostas após o envio;
+- Liberação dos resultados;
+- Cálculo da nota;
+- Acesso aos resultados.
+A validação da interface não substitui a validação do servidor.
+
+💬 Feedback visual
+Todas as ações devem apresentar uma resposta clara ao usuário.
+Exemplos:
+✅ Cadastro realizado com sucesso.
+✅ Login realizado com sucesso.
+✅ Simulado criado com sucesso.
+✅ Simulado atualizado com sucesso.
+✅ Simulado excluído com sucesso.
+✅ Questão adicionada com sucesso.
+✅ Respostas enviadas com sucesso.
+✅ Resultados liberados para os alunos.
+🔒 Resultados bloqueados.
+⚠️ Preencha todos os campos obrigatórios.
+⚠️ O gabarito deve ser A, B, C, D ou E.
+⚠️ Já existe uma questão com esse número.
+⚠️ Você já respondeu este simulado.
+❌ Credenciais inválidas.
+❌ Não foi possível realizar esta ação.
+
+📌 Regras principais
+O sistema possui os perfis professor e aluno.
+O professor cadastra os simulados.
+O professor informa apenas número, gabarito e assunto opcional.
+A prova é aplicada fora da plataforma.
+O aluno registra as respostas que marcou na prova.
+Cada aluno pode responder apenas uma vez cada simulado.
+Após o envio, as respostas não podem ser alteradas.
+O sistema corrige as respostas automaticamente.
+A nota é calculada de 0 a 10.
+O aluno não visualiza o resultado imediatamente.
+O professor decide quando liberar os resultados.
+O aluno só visualiza sua nota após a liberação.
+O professor pode consultar os resultados dos alunos.
+O usuário só deve acessar as informações permitidas para o seu perfil.
+Todas as ações devem apresentar feedback visual.
+
+🛠️ Tecnologia do projeto
+O front-end será desenvolvido utilizando:
+- React
+- Vite
+- JavaScript
+- JSX para a estrutura das telas
+- CSS comum, sem Tailwind CSS
+- React Router para navegação entre as telas, se necessário
+- Componentes reutilizáveis
+- Interface responsiva para computador, tablet e celular
+
+
+📚 Considerações finais
+O CorrigeProvas foi pensado para representar uma situação real do cotidiano escolar: o professor aplica um simulado fora da plataforma e utiliza o sistema para cadastrar o gabarito, receber as respostas dos alunos e obter a correção automática.
+A aplicação mantém o controle do processo, garante a tentativa única, protege os resultados até a autorização do professor e oferece uma experiência simples para os dois perfis de usuário.
