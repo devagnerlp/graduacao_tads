@@ -1,0 +1,3 @@
+Projeto que está sendo desenvolvido ao longo da disciplina de programação 3 ministrada no segundo semestre do ano de 2026.
+
+O desenvolvimento é incremental a cada encontro e no final do semestre o projeto ficará finalizado.
