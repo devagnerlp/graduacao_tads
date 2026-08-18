@@ -21,6 +21,18 @@ def mockUsers():
     # Devolvemos um dicionario. O FastAPI transforma em JSON sozinho.
 
     return [
-        {"id": "prof-1", "nome": "Mariana Souza", "email": "professor@corrigeprovas.com", "senha": "123456", "perfil": "professor"},
-        {"id": "aluno-1", "nome": "Lucas Oliveira", "email": "aluno@corrigeprovas.com", "senha": "123456", "perfil": "aluno"},
+        {
+            "id": "prof-1",
+            "nome": "Mariana Souza",
+            "email": "professor@corrigeprovas.com",
+            "senha": "123456",
+            "perfil": "professor"
+        },
+        {
+            "id": "aluno-1",
+            "nome": "Lucas Oliveira",
+            "email": "aluno@corrigeprovas.com",
+            "senha": "123456",
+            "perfil": "aluno"
+        }
     ]
